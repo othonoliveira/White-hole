@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdlib.h>
 using namespace std;
 
 int main(){
@@ -8,23 +9,29 @@ int main(){
     cout << "\nHangman game\n";
     cout << "Type the word with de end dot: \n";
     cin >> word;
-
+    system("cls");
+    
     for(i=0; word[i]!='.'; i++){
-            x=i;
+            x=i+1;
     }
-    for(a=0; a<21; a++){
+    for(a=0; a<x; a++){
         res[a]='_';
     }
+    res[x]='.';
+    cout << res[x+1];
     while(chances>0){
         cout << "\nType a latter: \n";
         cin >> latter;
-        for(i=0; i<x; i++){
+        for(i=0; i<x & chances>0; i++){
             if(latter==word[i]){
                 res[i]=word[i];
             }
-            cout << res;
+            if(res==word){
+                cout << "\nYou won\n";
+                return 0;
+            }
         }
-        chances--;
+        cout << res << "\n" << word;
     }
 
     cout << "\nYou lose\n";
